@@ -116,6 +116,7 @@ h1 {
     font-size: 1.3rem;
 }
 
+/* Replaced .value-badge with .status-badge for library counts/status */
 .status-badge, .filter-info {
     background: #00d4ff20;
     padding: 6px 12px;
@@ -183,6 +184,7 @@ h1 {
     gap: 4px;
 }
 
+/* Rarity Badges instead of Prices */
 .rarity-badge {
     font-size: 0.7rem;
     padding: 2px 6px;
@@ -192,26 +194,28 @@ h1 {
 }
 
 .rarity-high {
-    background: #ff4444;
+    background: #ff4444; /* Red for Rare/Delisted */
     color: white;
 }
 
 .rarity-medium {
-    background: #ffaa44;
+    background: #ffaa44; /* Orange for Uncommon */
     color: #1e2340;
 }
 
 .rarity-low {
-    background: #44aa44;
+    background: #44aa44; /* Green for Common */
     color: white;
 }
 
+/* Want Score Indicator */
 .want-score {
     font-size: 0.75rem;
     color: #ffaa44;
     font-weight: bold;
 }
 
+/* Delisted Badge */
 .delisted-badge {
     background: #ff4444;
     color: white;
@@ -220,6 +224,7 @@ h1 {
     border-radius: 4px;
     text-transform: uppercase;
     font-weight: bold;
+    margin-left: 6px;
 }
 
 .filters {
