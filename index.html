@@ -2,58 +2,60 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Permaswap — Digital Game Trading Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Permaswap — Digital Game Swapping</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
         <!-- Header -->
-        <div class="header">
+        <header class="header">
             <h1>🔄 PERMASWAP</h1>
-            <p class="tagline">Digital Game Trading — No Publishers Required</p>
-            <p class="subtitle">Cryptographic ownership transfer. Permanent. Verifiable.</p>
-        </div>
+            <p class="tagline">Digital Game Swapping — Like handing a disc to a friend.</p>
+            <p class="subtitle">Cryptographic ownership transfer. Permanent. No Publishers Required.</p>
+        </header>
 
         <!-- User Selector -->
         <div class="user-selector">
             <button id="btn-alice" class="user-btn active" data-user="alice">
-                👑 AliceCollector<br><span class="user-badge">Rare Horror Collector</span>
+                👑 AliceCollector <span class="user-badge">Rare Horror Collector</span>
             </button>
             <button id="btn-bob" class="user-btn" data-user="bob">
-                🎮 BobGamer<br><span class="user-badge">Sports & FPS Player</span>
+                🎮 BobGamer <span class="user-badge">Sports & FPS Player</span>
             </button>
         </div>
 
         <!-- Main Grid -->
         <div class="grid">
-            <!-- My Library Column -->
-            <div class="library-panel">
+            
+            <!-- My Library Panel -->
+            <section class="library-panel">
                 <div class="panel-header">
                     <h2>📚 MY LIBRARY</h2>
-                    <span class="value-badge" id="my-library-value">€0</span>
+                    <div class="status-badge" id="my-lib-status">Ready to Swap</div>
                 </div>
-                <div id="my-library" class="game-list">
-                    <!-- Dynamic content -->
-                </div>
+                
                 <div class="privacy-control">
-                    <label>🔒 Privacy:</label>
+                    <label for="privacy-select">Privacy:</label>
                     <select id="privacy-select">
                         <option value="public">🌍 Public — Anyone can browse</option>
-                        <option value="view_only" selected>👁️ View Only — Browse without proofs</option>
+                        <option value="view_only">👁️ View Only — Browse without proofs</option>
                         <option value="private">🔐 Private — Only you</option>
                     </select>
                 </div>
-            </div>
 
-            <!-- Browse Column -->
-            <div class="browse-panel">
-                <div class="panel-header">
-                    <h2>🔍 BROWSE OTHER LIBRARY</h2>
-                    <span class="value-badge" id="browse-library-value">€0</span>
+                <div id="my-library" class="game-list">
+                    <!-- Games injected via JS -->
                 </div>
-                
-                <!-- Filters -->
+            </section>
+
+            <!-- Browse Other Library Panel -->
+            <section class="browse-panel">
+                <div class="panel-header">
+                    <h3>🔍 BROWSE OTHER LIBRARY</h3>
+                    <div class="filter-info" id="browse-count">Loading...</div>
+                </div>
+
                 <div class="filters">
                     <input type="text" id="filter-search" placeholder="Search titles...">
                     <select id="filter-genre">
@@ -65,52 +67,57 @@
                     </select>
                     <select id="filter-sort">
                         <option value="rarity_desc">Sort by Rarity 🔥</option>
-                        <option value="price_desc">Sort by Value (High-Low)</option>
-                        <option value="price_asc">Sort by Value (Low-High)</option>
-                        <option value="year_desc">Sort by Year (New-Old)</option>
+                        <option value="year_desc">Newest First</option>
+                        <option value="year_asc">Oldest First</option>
                     </select>
                 </div>
 
                 <div id="browse-library" class="game-list">
-                    <!-- Dynamic content -->
+                    <!-- Games injected via JS -->
                 </div>
-            </div>
+            </section>
         </div>
 
-        <!-- Swap Panel (shows when offer is pending) -->
-        <div id="swap-panel" class="swap-panel hidden">
+        <!-- Pending Swap Offer Panel -->
+        <section id="swap-panel" class="swap-panel hidden">
             <div class="swap-header">
                 <h3>📋 PENDING SWAP OFFER</h3>
                 <button id="close-swap" class="close-btn">✕</button>
             </div>
-            <div id="swap-details" class="swap-details"></div>
-            <div class="swap-actions">
-                <button id="confirm-swap" class="btn-primary">✅ CONFIRM SWAP</button>
-                <button id="cancel-swap" class="btn-secondary">❌ Cancel</button>
+            
+            <div id="swap-details" class="swap-details">
+                <!-- Swap details injected via JS -->
             </div>
-        </div>
 
-        <!-- Swap History -->
-        <div class="history-panel">
+            <div class="swap-actions">
+                <button id="cancel-swap" class="btn-secondary">❌ Cancel</button>
+                <button id="confirm-swap" class="btn-primary">✅ CONFIRM SWAP</button>
+            </div>
+            
+            <p class="swap-note">⚠️ Trades don't need to be equal. Only mutual consent matters.</p>
+        </section>
+
+        <!-- Swap History Panel -->
+        <section class="history-panel">
             <div class="panel-header">
                 <h3>📜 SWAP HISTORY</h3>
                 <button id="clear-history" class="small-btn">Clear</button>
             </div>
             <div id="swap-history" class="history-list">
-                <div class="empty-history">No swaps yet. Browse and make an offer!</div>
+                <div class="empty-history">No swaps yet. Browse and select games to start swapping!</div>
             </div>
-        </div>
+        </section>
 
         <!-- Footer -->
-        <div class="footer">
+        <footer class="footer">
             <p><strong>How it works:</strong> Browse another user's library → Select titles → Initiate swap → Cryptographic re-binding → Trade complete.</p>
             <p class="crypto-note">🔐 <strong>Cryptographic binding:</strong> Each game entitlement is an Ed25519 signature binding User ID + Game ID. Swaps re-sign with new owner. No server required.</p>
-            <p class="demo-note">📱 Demo mode — Swap rare horror (Rule of Rose €300) for common games. All transfers simulated but cryptographically valid.</p>
+            <p class="demo-note">📱 <strong>Demo mode:</strong> Swap rare horror (Rule of Rose [Delisted]) for common games. All transfers simulated but cryptographically valid.</p>
             <p class="copy">The Permanent Activation Standard (PAS) — Because "buy" should mean "own."</p>
-        </div>
+        </footer>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/@noble/ed25519@2.0.0/lib/index.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
+
