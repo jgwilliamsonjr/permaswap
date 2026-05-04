@@ -1,11 +1,12 @@
-// Permaswap Demo - Complete Client-Side Implementation
-// Reframed: From "Trading/Value" to "Swapping/Rarity"
+// Permaswap Demo - Proof of Concept Implementation
+// Demonstrating: Peer-to-Peer Cryptographic Ownership Transfer
+// No Market. No Prices. Just Swaps.
 // ============================================================
 
 // DATA MODEL
 // Removed value_cents. Added want_score (community interest) and status.
 const GAME_DATABASE = {
-    // Alice's rare games
+    // Alice's rare/delisted games (The "Preservation" Case)
     'ror_2006': { 
         id: 'ror_2006', 
         title: 'Rule of Rose', 
@@ -47,7 +48,7 @@ const GAME_DATABASE = {
         image: '💀' 
     },
 
-    // Bob's common games
+    // Bob's common games (The "Utility" Case)
     'fifa23_2022': { 
         id: 'fifa23_2022', 
         title: 'FIFA 23', 
@@ -114,6 +115,7 @@ let pendingSwap = null;
 let currentUser = 'alice';
 
 // Generate deterministic "signatures" (simulated for demo)
+// In production: Ed25519 sign(userId + gameId + timestamp)
 function generateSignature(userId, gameId, timestamp) {
     const str = `${userId}:${gameId}:${timestamp}`;
     let hash = 0;
@@ -216,7 +218,7 @@ function renderBrowseLibrary(filters = {}) {
         games = games.filter(g => g.genre === genre);
     }
 
-    // Sort (Removed Price Sorting)
+    // Sort by Rarity/Want Score (NO PRICE SORTING)
     switch(sortBy) {
         case 'rarity_desc':
             games.sort((a,b) => b.rarity - a.rarity);
